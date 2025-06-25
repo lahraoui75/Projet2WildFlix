@@ -27,7 +27,7 @@ elif identifiant and mdp:
 if connecté:
 
     # En-tête
-    st.image("https://img.phonandroid.com/2023/05/netflix-films-audiences-baisse.jpg", use_column_width=True)
+    st.image("https://github.com/lahraoui75/Projet2WildFlix/blob/main/image%20group%202.png?raw=true", use_column_width=True)
     st.title("🎬 Explorateur & Recommandateur de Films")
     st.markdown("Choisissez un film pour voir ses détails et découvrir des suggestions similaires.")
 
