@@ -33,7 +33,7 @@ if connecté:
 
     @st.cache_data
     def load_data():
-        df = pd.read_csv("https://github.com/lahraoui75/Projet2WildFlix/blob/main/df_final_20250625.csv")
+        df = pd.read_csv("https://raw.githubusercontent.com/lahraoui75/Projet2WildFlix/refs/heads/main/df_final_20250625.csv")
         return df
 
     df = load_data()
