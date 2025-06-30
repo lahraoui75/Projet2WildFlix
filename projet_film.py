@@ -7,6 +7,8 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from sklearn.neighbors import NearestNeighbors
+import base64
+import time 
 
 if "show_registration" not in st.session_state:
     st.session_state.show_registration = False
@@ -18,7 +20,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
 
 
 dark_css = """
@@ -71,13 +72,21 @@ dark_css = """
 
 st.markdown(dark_css, unsafe_allow_html=True)
 
-# --- Son d'accueil ---
-def lire_son_accueil():
-    st.markdown("""
-        <audio autoplay>
-            <source src="Son NETFLIX.mp3" type="audio/mp3">
-        </audio>
-    """, unsafe_allow_html=True)
+def play_audio(file_path):
+    if not os.path.isfile(file_path):
+        st.error(f"❌ Le fichier audio '{file_path}' est introuvable.")
+        return
+    with open(file_path, "rb") as f:
+        data = f.read()
+    b64_encoded = base64.b64encode(data).decode()
+    audio_html = f"""
+    <audio autoplay>
+        <source src="data:audio/mp3;base64,{b64_encoded}" type="audio/mp3">
+        Votre navigateur ne prend pas en charge l'audio HTML5.
+    </audio>
+    """
+    st.markdown(audio_html, unsafe_allow_html=True)
+
 
 
 # Initialisation de session
@@ -88,7 +97,7 @@ if "role" not in st.session_state:
 if "current_page" not in st.session_state:
     st.session_state.current_page = "init"
 
-# --- Affichage de l'inscription uniquement sur la page d'initialisation ---
+
 if st.session_state.current_page == "init":
     st.title("🆕 Créer un compte")
 
@@ -136,8 +145,13 @@ if not st.session_state.logged_in:
             if login_password == row["mdp"]:
                 st.session_state.logged_in = True
                 st.session_state.role = row["role"]
+
+                # 🔊 Lecture du son d’accueil (corrige le chemin si besoin)
+                play_audio("C:/Users/wildc/Desktop/movie_info/streamlit.mp3")
+                time.sleep(1)  # ⏳ Donne le temps de lire le son avant le reru
+
+
                 st.success(f"Bienvenue **{row['role']}** {login_username} !")
-                lire_son_accueil()
                 st.rerun()
 
             else:
@@ -155,11 +169,9 @@ if st.session_state.get("logged_in", False):
         st.rerun()
 
 
-
-
 st.title("🎥 WildFlix — Plateforme de Recommandation de Films")
 
-st.image("wildFlix.png", use_container_width=True)
+st.image("https://img.phonandroid.com/2023/05/netflix-films-audiences-baisse.jpg", use_container_width=True)
 
 titres_onglets = ['Bienvenue', 'Recommandation', 'Dashboard']
 onglet1, onglet2, onglet3 = st.tabs(titres_onglets)
@@ -174,7 +186,7 @@ with onglet2:
 
         @st.cache_data
         def load_data():
-            df = pd.read_csv("https://raw.githubusercontent.com/lahraoui75/Projet2WildFlix/refs/heads/main/df_final_V1.csv")
+            df = pd.read_csv(r"C:\Users\wildc\Desktop\Projet 2\df_final.csv")
             return df
 
         df = load_data()
