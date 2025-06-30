@@ -159,7 +159,7 @@ if st.session_state.get("logged_in", False):
 
 st.title("🎥 WildFlix — Plateforme de Recommandation de Films")
 
-st.image("https://img.phonandroid.com/2023/05/netflix-films-audiences-baisse.jpg", use_container_width=True)
+st.image("wildFlix.png", use_container_width=True)
 
 titres_onglets = ['Bienvenue', 'Recommandation', 'Dashboard']
 onglet1, onglet2, onglet3 = st.tabs(titres_onglets)
