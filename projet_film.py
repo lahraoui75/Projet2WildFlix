@@ -147,7 +147,7 @@ if not st.session_state.logged_in:
                 st.session_state.role = row["role"]
 
                 # 🔊 Lecture du son d’accueil (corrige le chemin si besoin)
-                play_audio("Son NETFLIX.mp3")
+                play_audio("streamlit.mp3")
                 time.sleep(1)  # ⏳ Donne le temps de lire le son avant le reru
 
 
