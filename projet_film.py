@@ -75,7 +75,7 @@ st.markdown(dark_css, unsafe_allow_html=True)
 def lire_son_accueil():
     st.markdown("""
         <audio autoplay>
-            <source src="assets/netflix_intro.mp3" type="audio/mp3">
+            <source src="Son NETFLIX.mp3" type="audio/mp3">
         </audio>
     """, unsafe_allow_html=True)
 
