@@ -174,7 +174,7 @@ with onglet2:
 
         @st.cache_data
         def load_data():
-            df = pd.read_csv(r"C:\Users\wildc\Desktop\Projet 2\df_final.csv")
+            df = pd.read_csv("https://raw.githubusercontent.com/lahraoui75/Projet2WildFlix/refs/heads/main/df_final_V1.csv")
             return df
 
         df = load_data()
