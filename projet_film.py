@@ -26,7 +26,7 @@ dark_css = """
 <style>
 /* Fond général */
 [data-testid="stAppViewContainer"] {
-    background-color: #232846;
+    background-color: #d7bde2;
     color: white;
 }
 
